@@ -50,14 +50,12 @@ public class UserController {
     }
 
     @GetMapping("/getByEmail/{emailId}")
-    public ResponseEntity<User> getUserByEmailId(@PathVariable("emailId") String emailId) throws UserNotFoundException{
+    public ResponseEntity<?> getUserByEmailId(@PathVariable("emailId") String emailId) throws UserNotFoundException{
         try {
             User user=userService.getUserByEmail(emailId);
             return new ResponseEntity<>(user,HttpStatus.OK);
         } catch (Exception e){
-            String errorMessage = e.getMessage();
-            User errorUser = parseUserFromString(errorMessage);
-            return new ResponseEntity<>(errorUser, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

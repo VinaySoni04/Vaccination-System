@@ -2,6 +2,7 @@ package com.WithDBConnection.VaccineManagementSystem.DTOs;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -9,6 +10,6 @@ import java.util.Date;
 public class AppointmentDTO {
     private int doctorId;
     private int userId;
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
     private LocalTime appointmentTime;
 }

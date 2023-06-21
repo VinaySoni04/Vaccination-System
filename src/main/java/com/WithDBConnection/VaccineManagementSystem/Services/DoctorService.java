@@ -4,6 +4,7 @@ import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
 import com.WithDBConnection.VaccineManagementSystem.Enum.Gender;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.CenterNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExistsException;
+import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
 import com.WithDBConnection.VaccineManagementSystem.Models.VaccinationCenter;
@@ -58,13 +59,43 @@ public class DoctorService {
 
     public List<String> getAllMaleDocAboveAge40() {
         List<String> allDocs=new ArrayList<>();
-        Doctor doctor=new Doctor();
         List<Doctor> docs=doctorRepository.findAll();
+        Doctor doctor=new Doctor();
         for (Doctor doc:docs){
             if(doc.getAge()>40 && doc.getGender()==Gender.MALE){
                 allDocs.add(doc.getName());
             }
         }
         return allDocs;
+    }
+
+    public List<String> getAllDocHaveAbove10Appointment() {
+        List<String> allDocs=new ArrayList<>();
+        List<Doctor> docs=doctorRepository.findAll();
+        Doctor doctor=new Doctor();
+        for (Doctor doc:docs){
+            if(doc.getAppointments().size()>10){
+                allDocs.add(doc.getName());
+            }
+        }
+        return allDocs;
+    }
+
+    public String getRatio() throws DoctorNotFoundException{
+        List<Doctor> docs=doctorRepository.findAll();
+        int male=0, female=0;
+        for(Doctor doc:docs){
+            if(doc.getGender()==Gender.MALE)
+                male++;
+            if(doc.getGender()==Gender.FEMALE)
+                female++;
+        }
+        if(male==0)
+            throw new DoctorNotFoundException("No male doctors are present, Only females doctors are present");
+        if(female==0)
+            throw new DoctorNotFoundException("No female doctors are present, Only male doctors are present");
+        // M:F or in decimals?
+        // double ratio=(double)male/female
+        return male+":"+female;
     }
 }

@@ -3,6 +3,7 @@ package com.WithDBConnection.VaccineManagementSystem.Controllers;
 import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.CenterNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExistsException;
+import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
 import com.WithDBConnection.VaccineManagementSystem.Services.DoctorService;
@@ -42,5 +43,19 @@ public class DoctorController {
     @GetMapping("/getAllMaleDocAboveAge40")
     public ResponseEntity<List<String>> getAllMaleDocAboveAge40(){
         return new ResponseEntity<>(doctorService.getAllMaleDocAboveAge40(),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllDocHaveAbove10Appointment")
+    public ResponseEntity<List<String>> getAllDocHaveAbove10Appointment(){
+        return new ResponseEntity<>(doctorService.getAllDocHaveAbove10Appointment(),HttpStatus.OK);
+    }
+
+    @GetMapping("/getRatio")
+    public ResponseEntity<String> getRatio() throws DoctorNotFoundException {
+        try{
+            return new ResponseEntity<>(doctorService.getRatio(),HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
     }
 }

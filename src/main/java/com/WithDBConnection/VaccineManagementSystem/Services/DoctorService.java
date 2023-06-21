@@ -1,6 +1,7 @@
 package com.WithDBConnection.VaccineManagementSystem.Services;
 
 import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
+import com.WithDBConnection.VaccineManagementSystem.Enum.Gender;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.CenterNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExistsException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
@@ -11,6 +12,9 @@ import com.WithDBConnection.VaccineManagementSystem.Repositories.VaccinationCent
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +54,17 @@ public class DoctorService {
         vaccinationCenter.getDoctorList().add(doctor);
         vaccinationCenterRepository.save(vaccinationCenter);
         return "Doctor has been associated to vaccination center successfully";
+    }
+
+    public List<String> getAllMaleDocAboveAge40() {
+        List<String> allDocs=new ArrayList<>();
+        Doctor doctor=new Doctor();
+        List<Doctor> docs=doctorRepository.findAll();
+        for (Doctor doc:docs){
+            if(doc.getAge()>40 && doc.getGender()==Gender.MALE){
+                allDocs.add(doc.getName());
+            }
+        }
+        return allDocs;
     }
 }

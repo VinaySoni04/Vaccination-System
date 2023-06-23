@@ -1,11 +1,10 @@
 package com.WithDBConnection.VaccineManagementSystem.Controllers;
 
 import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
-import com.WithDBConnection.VaccineManagementSystem.Exceptions.CenterNotFoundException;
-import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExistsException;
-import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
-import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
+import com.WithDBConnection.VaccineManagementSystem.DTOs.UpdateDetailsDTO;
+import com.WithDBConnection.VaccineManagementSystem.Exceptions.*;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
+import com.WithDBConnection.VaccineManagementSystem.Models.User;
 import com.WithDBConnection.VaccineManagementSystem.Services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +55,16 @@ public class DoctorController {
             return new ResponseEntity<>(doctorService.getRatio(),HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/updateDetailsByEmailId")
+    public ResponseEntity<String> updateDetails(@RequestBody UpdateDetailsDTO updateDetailsDTO) throws DoctorNotFoundException {
+        try {
+            String done=doctorService.updateDetails(updateDetailsDTO);
+            return new ResponseEntity<>(done,HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

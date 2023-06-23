@@ -54,7 +54,7 @@ public class UserService {
     }
 
     public User getUserByEmail(String emailId) throws UserNotFoundException {
-        Optional<User> userOpt= Optional.ofNullable(userRepository.findByEmailId(emailId));
+        Optional<User> userOpt=userRepository.findByEmailId(emailId);
         if (userOpt.isEmpty()){
             throw new UserNotFoundException("Invalid email id");
         }

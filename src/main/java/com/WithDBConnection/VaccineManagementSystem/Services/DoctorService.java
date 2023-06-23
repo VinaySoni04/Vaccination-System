@@ -1,12 +1,14 @@
 package com.WithDBConnection.VaccineManagementSystem.Services;
 
 import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
+import com.WithDBConnection.VaccineManagementSystem.DTOs.UpdateDetailsDTO;
 import com.WithDBConnection.VaccineManagementSystem.Enum.Gender;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.CenterNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExistsException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
+import com.WithDBConnection.VaccineManagementSystem.Models.User;
 import com.WithDBConnection.VaccineManagementSystem.Models.VaccinationCenter;
 import com.WithDBConnection.VaccineManagementSystem.Repositories.DoctorRepository;
 import com.WithDBConnection.VaccineManagementSystem.Repositories.VaccinationCenterRepository;
@@ -97,5 +99,20 @@ public class DoctorService {
         // M:F or in decimals?
         // double ratio=(double)male/female
         return male+":"+female;
+    }
+
+    public String updateDetails(UpdateDetailsDTO updateDetailsDTO) throws DoctorNotFoundException{
+        String doctorEmailId= updateDetailsDTO.getEmailId();
+        Optional<Doctor> doctorOpt=doctorRepository.findByEmailId(doctorEmailId);
+        if(doctorOpt.isEmpty()){
+            throw new DoctorNotFoundException("Doctor is not present with mentioned email id");
+        }
+        Doctor doctor=doctorOpt.get();
+        doctor.setName(updateDetailsDTO.getNewName());
+        doctor.setAge(updateDetailsDTO.getNewAge());
+        doctor.setGender(updateDetailsDTO.getNewGender());
+        //doctor.setEmailId(updateDetailsDTO.getNewEmailId());
+        doctorRepository.save(doctor);
+        return "All old details are replaced by new details";
     }
 }

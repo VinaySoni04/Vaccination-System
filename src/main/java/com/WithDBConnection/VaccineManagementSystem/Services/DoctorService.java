@@ -29,7 +29,7 @@ public class DoctorService {
         if(doctor.getEmailId()==null){
             throw new EmailIdEmptyException("It seems you haven't enter the email, please enter email first!!");
         }
-        if(doctorRepository.findByEmailId(doctor.getEmailId())!=null){
+        if(doctorRepository.findByEmailId(doctor.getEmailId()).isPresent()){
             throw new DoctorAlreadyExistsException("Doctor is already exists with the entered email");
         }
         doctorRepository.save(doctor);
@@ -174,5 +174,15 @@ public class DoctorService {
         vaccinationCenter.setDoctorList(doctorList);
         vaccinationCenterRepository.save(vaccinationCenter);
         return "List of all female doctors is sent to the "+vaccinationCenter.getCenterName();
+    }
+
+    public String deleteDoctor(Integer doctorId) throws DoctorNotFoundException{
+        Optional<Doctor> doctorOpt=doctorRepository.findById(doctorId);
+        if(doctorOpt.isEmpty()){
+            throw new DoctorNotFoundException("Doctor is not found with the id "+doctorId);
+        }
+        Doctor doctor=doctorOpt.get();
+        doctorRepository.delete(doctor);
+        return "Doctor is removed from database";
     }
 }

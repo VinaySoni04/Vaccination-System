@@ -1,6 +1,7 @@
 package com.WithDBConnection.VaccineManagementSystem.Services;
 
 import com.WithDBConnection.VaccineManagementSystem.DTOs.AppointmentDTO;
+import com.WithDBConnection.VaccineManagementSystem.Exceptions.AppointmentNotRegisteredException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.UserNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Models.Appointment;
@@ -53,5 +54,15 @@ public class AppointmentService {
         doctorRepository.save(doctor);
         userRepository.save(user);
         return "Appointment is booked successfully";
+    }
+
+    public String cancelAppointment(Integer id) throws AppointmentNotRegisteredException {
+        Optional<Appointment> appointmentOpt=appointmentRepository.findById(id);
+        if(appointmentOpt.isEmpty()){
+            throw new AppointmentNotRegisteredException("You have entered wrong appointment id");
+        }
+        Appointment appointment=appointmentOpt.get();
+        appointmentRepository.delete(appointment);
+        return "Appointment with id "+id+" is cancelled successfully";
     }
 }

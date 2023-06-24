@@ -106,4 +106,14 @@ public class DoctorController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("delete/{doctorId}")
+    public ResponseEntity<String> deleteDoctor(@PathVariable("doctorId") Integer doctorId) throws DoctorNotFoundException {
+        try{
+            String done=doctorService.deleteDoctor(doctorId);
+            return new ResponseEntity<>(done,HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
 }

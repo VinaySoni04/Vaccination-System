@@ -111,6 +111,7 @@ public class DoctorService {
         doctor.setName(updateDetailsDTO.getNewName());
         doctor.setAge(updateDetailsDTO.getNewAge());
         doctor.setGender(updateDetailsDTO.getNewGender());
+        //doctor.setEmailId(updateDetailsDTO.getNewEmailId());
         doctorRepository.save(doctor);
         return "All old details are replaced by new details";
     }

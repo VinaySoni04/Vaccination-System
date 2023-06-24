@@ -1,4 +1,4 @@
-![Screenshot (148)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/120c31d0-8790-43e7-a51d-11f38dc19a10)# Vaccination-System
+# Vaccination-System
 
 Result of some APIs
 

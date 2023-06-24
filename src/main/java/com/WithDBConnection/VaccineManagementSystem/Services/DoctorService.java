@@ -112,4 +112,20 @@ public class DoctorService {
         doctorRepository.save(doctor);
         return "All old details are replaced by new details";
     }
+
+    public String giveList(Integer centerId) throws CenterNotFoundException {
+        Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
+        if (centerOpt.isEmpty()) {
+            throw new CenterNotFoundException("Center is not found with given id");
+        }
+        VaccinationCenter vaccinationCenter = centerOpt.get();
+        Doctor doctor=new Doctor();
+        List<Doctor> doctorList = doctorRepository.findAll();
+        for(Doctor doc:doctorList){
+            doc.setVaccinationCenter(vaccinationCenter);
+        }
+        vaccinationCenter.setDoctorList(doctorList);
+        vaccinationCenterRepository.save(vaccinationCenter);
+        return "List of all doctors is sent to the vaccination center with center id " + centerId;
+    }
 }

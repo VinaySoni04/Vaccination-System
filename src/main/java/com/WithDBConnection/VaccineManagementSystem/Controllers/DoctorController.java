@@ -66,4 +66,14 @@ public class DoctorController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/giveDoctorListToCenter")
+    public ResponseEntity<String> giveList(@RequestParam Integer centerId) throws CenterNotFoundException, DoctorNotFoundException {
+        try {
+            String done = doctorService.giveList(centerId);
+            return new ResponseEntity<>(done, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -8,14 +8,12 @@ import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorAlreadyExis
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.DoctorNotFoundException;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.EmailIdEmptyException;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
-import com.WithDBConnection.VaccineManagementSystem.Models.User;
 import com.WithDBConnection.VaccineManagementSystem.Models.VaccinationCenter;
 import com.WithDBConnection.VaccineManagementSystem.Repositories.DoctorRepository;
 import com.WithDBConnection.VaccineManagementSystem.Repositories.VaccinationCenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -111,7 +109,6 @@ public class DoctorService {
         doctor.setName(updateDetailsDTO.getNewName());
         doctor.setAge(updateDetailsDTO.getNewAge());
         doctor.setGender(updateDetailsDTO.getNewGender());
-        //doctor.setEmailId(updateDetailsDTO.getNewEmailId());
         doctorRepository.save(doctor);
         return "All old details are replaced by new details";
     }

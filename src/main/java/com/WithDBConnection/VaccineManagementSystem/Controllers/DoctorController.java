@@ -4,7 +4,6 @@ import com.WithDBConnection.VaccineManagementSystem.DTOs.AssociateDoctorDTO;
 import com.WithDBConnection.VaccineManagementSystem.DTOs.UpdateDetailsDTO;
 import com.WithDBConnection.VaccineManagementSystem.Exceptions.*;
 import com.WithDBConnection.VaccineManagementSystem.Models.Doctor;
-import com.WithDBConnection.VaccineManagementSystem.Models.User;
 import com.WithDBConnection.VaccineManagementSystem.Services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

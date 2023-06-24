@@ -1,4 +1,4 @@
-# Vaccination-System
+![Screenshot (148)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/120c31d0-8790-43e7-a51d-11f38dc19a10)# Vaccination-System
 
 Result of some APIs
 
@@ -24,7 +24,20 @@ Result of some APIs
 
 5. Send a list of all doctors to a particular vaccination center using the center id
 
-![Screenshot (145)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/e5efdee7-c56e-4e3c-ac2f-da436e0786a9)
+![Screenshot (149)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/38a476d1-0ac5-4319-bfe1-352b735d83aa)
 
 
+6. Send a list of all male doctors to a particular vaccination center using the center id
+
+![Screenshot (146)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/1900794c-8698-49b6-90a3-8b86d7c5791d)
+
+
+7. Send a list of all male doctors whose age is above 40 to a particular vaccination center using the center id
+
+![Screenshot (148)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/1274543d-f677-48d6-b6d8-d0a3793f2608)
+
+
+8. Send a list of all female doctors to a particular vaccination center using the center id
+
+![Screenshot (147)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/4f26bc91-83a3-47f8-8255-eb76177eea31)
 

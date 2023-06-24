@@ -22,3 +22,9 @@ Result of some APIs
 ![Screenshot (144)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/88a520b5-823f-473a-a2b8-e3352d6c6399)
 
 
+5. Send a list of all doctors to a particular vaccination center using the center id
+
+![Screenshot (145)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/e5efdee7-c56e-4e3c-ac2f-da436e0786a9)
+
+
+

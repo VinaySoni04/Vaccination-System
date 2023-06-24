@@ -119,7 +119,6 @@ public class DoctorService {
             throw new CenterNotFoundException("Center is not found with given id");
         }
         VaccinationCenter vaccinationCenter = centerOpt.get();
-        Doctor doctor=new Doctor();
         List<Doctor> doctorList = doctorRepository.findAll();
         for(Doctor doc:doctorList){
             doc.setVaccinationCenter(vaccinationCenter);
@@ -127,5 +126,53 @@ public class DoctorService {
         vaccinationCenter.setDoctorList(doctorList);
         vaccinationCenterRepository.save(vaccinationCenter);
         return "List of all doctors is sent to the vaccination center with center id " + centerId;
+    }
+
+    public String giveListOfMaleDoctor(Integer centerId) throws CenterNotFoundException{
+        Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
+        if (centerOpt.isEmpty()) {
+            throw new CenterNotFoundException("Center is not found with given id");
+        }
+        VaccinationCenter vaccinationCenter = centerOpt.get();
+        List<Doctor> doctorList = doctorRepository.findAll();
+        for(Doctor doc:doctorList){
+            if(doc.getGender()==Gender.MALE)
+                doc.setVaccinationCenter(vaccinationCenter);
+        }
+        vaccinationCenter.setDoctorList(doctorList);
+        vaccinationCenterRepository.save(vaccinationCenter);
+        return "List of all male doctors is sent to the "+vaccinationCenter.getCenterName();
+    }
+
+    public String giveListOfMaleDoctorAboveAge40(Integer centerId) throws CenterNotFoundException{
+        Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
+        if (centerOpt.isEmpty()) {
+            throw new CenterNotFoundException("Center is not found with given id");
+        }
+        VaccinationCenter vaccinationCenter = centerOpt.get();
+        List<Doctor> doctorList = doctorRepository.findAll();
+        for(Doctor doc:doctorList){
+            if(doc.getGender()==Gender.MALE &&  doc.getAge()>40)
+                doc.setVaccinationCenter(vaccinationCenter);
+        }
+        vaccinationCenter.setDoctorList(doctorList);
+        vaccinationCenterRepository.save(vaccinationCenter);
+        return "List of all male doctors is sent to the "+vaccinationCenter.getCenterName();
+    }
+
+    public String giveListOfFemaleDoctor(Integer centerId) throws CenterNotFoundException{
+        Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
+        if (centerOpt.isEmpty()) {
+            throw new CenterNotFoundException("Center is not found with given id");
+        }
+        VaccinationCenter vaccinationCenter = centerOpt.get();
+        List<Doctor> doctorList = doctorRepository.findAll();
+        for(Doctor doc:doctorList){
+            if(doc.getGender()==Gender.FEMALE)
+                doc.setVaccinationCenter(vaccinationCenter);
+        }
+        vaccinationCenter.setDoctorList(doctorList);
+        vaccinationCenterRepository.save(vaccinationCenter);
+        return "List of all female doctors is sent to the "+vaccinationCenter.getCenterName();
     }
 }

@@ -67,10 +67,40 @@ public class DoctorController {
         }
     }
 
-    @PostMapping("/giveDoctorListToCenter")
+    @PutMapping("/giveDoctorListToCenter")
     public ResponseEntity<String> giveList(@RequestParam Integer centerId) throws CenterNotFoundException, DoctorNotFoundException {
         try {
             String done = doctorService.giveList(centerId);
+            return new ResponseEntity<>(done, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/giveListOfMaleDoctor")
+    public ResponseEntity<String> giveListOfMaleDoctor(@RequestParam Integer centerId) throws CenterNotFoundException, DoctorNotFoundException {
+        try {
+            String done = doctorService.giveListOfMaleDoctor(centerId);
+            return new ResponseEntity<>(done, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/giveListOfMaleDoctorAboveAge40")
+    public ResponseEntity<String> giveListOfMaleDoctorAboveAge40(@RequestParam Integer centerId) throws CenterNotFoundException, DoctorNotFoundException {
+        try {
+            String done = doctorService.giveListOfMaleDoctorAboveAge40(centerId);
+            return new ResponseEntity<>(done, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/giveListOfFemaleDoctor")
+    public ResponseEntity<String> giveListOfFeMaleDoctor(@RequestParam Integer centerId) throws CenterNotFoundException, DoctorNotFoundException {
+        try {
+            String done = doctorService.giveListOfFemaleDoctor(centerId);
             return new ResponseEntity<>(done, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);

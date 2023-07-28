@@ -66,7 +66,7 @@ public class AppointmentService {
                     +"Please take precautions and mask is mandatory. \n"
                     +"Thank You";
         SimpleMailMessage mailMessage=new SimpleMailMessage();
-        mailMessage.setFrom("vsvaccinations@gmail.com");
+        mailMessage.setFrom("dummy8597362@gmail.com");
         mailMessage.setTo(user.getEmailId());
         mailMessage.setSubject("Appointment is confirmed!!");
         mailMessage.setText(body);

@@ -2,7 +2,7 @@
 Appointment booking platform with intuitive dose selection and comprehensive vaccination centers management capabilities.
 
 Here are some key features of the project
-#Controller
+# Controller
 ![Screenshot (158)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/732c5106-a408-4204-92c0-9fa18ad5f28f)
 ![Screenshot (159)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/13aa4321-1fc9-43c9-bd3b-4ad36f3b5338)
 
@@ -10,7 +10,7 @@ Here are some key features of the project
 ![Screenshot (160)](https://github.com/VinaySoni04/Vaccination-System/assets/98009479/8c38c3b3-56dd-4d21-82bf-582b534b5f9d)
 
 
-#Result of some APIs
+# Result of some APIs
 
 1. Give a dose to the user/patient
 
